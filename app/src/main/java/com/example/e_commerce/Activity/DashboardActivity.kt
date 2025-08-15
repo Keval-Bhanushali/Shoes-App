@@ -1,21 +1,40 @@
 package com.example.e_commerce.Activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.e_commerce.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.e_commerce.Adapter.BrandsAdapter
+import com.example.e_commerce.ViewModel.MainViewModel
+import com.example.e_commerce.databinding.ActivityMainBinding
 
 class DashboardActivity : AppCompatActivity() {
+    private val ViewModel: MainViewModel by lazy {
+        ViewModelProvider(this)[MainViewModel::class.java]
+    }
+
+    private lateinit var binding: ActivityMainBinding
+
+    private val brandsAdapter = BrandsAdapter(mutableListOf())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initUI()
+    }
+
+    private fun initUI() {
+        initBrands()
+    }
+
+    private fun initBrands() {
+        binding.recyclerViewBrands.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerViewBrands.adapter = brandsAdapter
+        binding.progressBarCategory.visibility = View.VISIBLE
     }
 }
