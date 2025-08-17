@@ -35,6 +35,13 @@ class DashboardActivity : AppCompatActivity() {
         binding.recyclerViewBrands.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewBrands.adapter = brandsAdapter
-        binding.progressBarCategory.visibility = View.VISIBLE
+        binding.progressBarBrands.visibility = View.VISIBLE
+
+        ViewModel.brands.observe(this){
+            data -> brandsAdapter.updateData(data)
+            binding.progressBarBrands.visibility = View.GONE
+        }
+
+        ViewModel.loadBrands()
     }
 }
