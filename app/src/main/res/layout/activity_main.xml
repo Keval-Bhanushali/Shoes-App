@@ -100,7 +100,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp">
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpagerSlider"
@@ -121,6 +122,7 @@
                     app:layout_constraintTop_toTopOf="@+id/viewpagerSlider" />
 
                 <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dotIndiactor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
@@ -129,11 +131,10 @@
                     app:dotsSize="6dp"
                     app:dotsSpacing="2dp"
                     app:dotsWidthFactor="2.5"
-                    app:selectedDotColor="@color/blue"
-                    android:id="@+id/dotIndiactor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:selectedDotColor="@color/blue"
                     tools:visibility="visible" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,11 +5,13 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.e_commerce.Adapter.BrandsAdapter
+import com.example.e_commerce.Adapter.PopularAdapter
 import com.example.e_commerce.Adapter.SliderAdapter
 import com.example.e_commerce.Model.SliderModel
 import com.example.e_commerce.ViewModel.MainViewModel
@@ -23,6 +25,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val brandsAdapter = BrandsAdapter(mutableListOf())
+    private val popularAdapter = PopularAdapter(mutableListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,19 @@ class DashboardActivity : AppCompatActivity() {
     private fun initUI() {
         initBrands()
         initBanner()
+        initRecommended()
+    }
+
+    private fun initRecommended() {
+        binding.recyclerViewRecommended.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerViewRecommended.adapter = popularAdapter
+        binding.progressBarRecommendation.visibility = View.VISIBLE
+
+        ViewModel.popular.observe(this) { data ->
+            popularAdapter.updateData(data)
+            binding.progressBarRecommendation.visibility = View.GONE
+        }
+        ViewModel.loadPopular()
     }
 
     private fun initBrands() {
@@ -71,8 +87,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun initBanner() {
         binding.progressBarBanner.visibility = View.VISIBLE
-        ViewModel.banners.observe(this) {
-            items->
+        ViewModel.banners.observe(this) { items ->
             setupBanners(items)
             binding.progressBarBanner.visibility = View.GONE
         }
