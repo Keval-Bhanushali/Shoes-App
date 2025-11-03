@@ -1,12 +1,9 @@
-package com.example.e_commerce.Activity
+package com.example.e_commerce.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.e_commerce.R
 import com.example.e_commerce.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {

@@ -4,4 +4,9 @@
     <string name="go">Go</string>
     <string name="what_are_you_looking_for">What are you looking for?</string>
     <string name="recommendation">Recommendation</string>
+    <string name="total_price">Total Price</string>
+    <string name="select_color">Select Color</string>
+    <string name="select_size">Select size</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="title">title</string>
 </resources>

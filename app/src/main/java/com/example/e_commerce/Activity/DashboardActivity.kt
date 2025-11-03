@@ -1,4 +1,4 @@
-package com.example.e_commerce.Activity
+package com.example.e_commerce.activity
 
 import android.os.Bundle
 import android.view.View

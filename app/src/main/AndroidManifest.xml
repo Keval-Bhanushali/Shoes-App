@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".Activity.DetailActivity"
+            android:name=".activity.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.DashboardActivity"
+            android:name=".activity.DashboardActivity"
             android:exported="true"></activity>
     </application>
 
