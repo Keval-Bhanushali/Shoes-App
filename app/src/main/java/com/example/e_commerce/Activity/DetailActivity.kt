@@ -5,7 +5,9 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.e_commerce.Adapter.PicsAdapter
 import com.example.e_commerce.Helper.ManagmentCart
 import com.example.e_commerce.Model.ItemModel
 import com.example.e_commerce.databinding.ActivityDetailBinding
@@ -31,9 +33,22 @@ class DetailActivity : AppCompatActivity() {
         }
 
         setupViews()
+        setupPicsList()
     }
 
-    private fun setupViews()=with(binding) {
+    private fun setupPicsList() {
+        val picList = item.picUrl.toList()
+        binding.picList.apply {
+            adapter = PicsAdapter(picList as MutableList<String>) { imageUrl ->
+                Glide.with(this@DetailActivity)
+                    .load(imageUrl)
+                    .into(binding.picMain)
+            }
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun setupViews() = with(binding) {
         titleTxt.text = item.title
         descriptionTxt.text = item.description
         priceTxt.text = "$${item.price}"
@@ -66,7 +81,8 @@ class DetailActivity : AppCompatActivity() {
             managmentCart.insert(item)
         }
     }
-    private fun updateTotalPrice() = with(binding){
+
+    private fun updateTotalPrice() = with(binding) {
         totalPriceTxt.text = "$${item.price * item.numberInCart}"
     }
 }
